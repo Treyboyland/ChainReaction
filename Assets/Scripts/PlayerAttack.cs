@@ -5,17 +5,17 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField]
-    GameObject highAttack = null;
+    SwitchAttackingAfterTime highAttack = null;
 
     [SerializeField]
-    GameObject midAttack = null;
+    SwitchAttackingAfterTime midAttack = null;
 
     [SerializeField]
-    GameObject lowAttack = null;
+    SwitchAttackingAfterTime lowAttack = null;
 
     bool IsCurrentlyAttacking()
     {
-        return highAttack.activeInHierarchy || midAttack.activeInHierarchy || lowAttack.activeInHierarchy;
+        return highAttack.HitBox.IsAttacking || midAttack.HitBox.IsAttacking || lowAttack.HitBox.IsAttacking;
     }
 
     // Update is called once per frame
@@ -25,15 +25,15 @@ public class PlayerAttack : MonoBehaviour
         {
             if (Input.GetButton("High"))
             {
-                highAttack.SetActive(true);
+                highAttack.Attack();
             }
             else if (Input.GetButton("Low"))
             {
-                lowAttack.SetActive(true);
+                lowAttack.Attack();
             }
             else
             {
-                midAttack.SetActive(true);
+                midAttack.Attack();
             }
         }
     }

@@ -24,7 +24,17 @@ public class PlayerMovement : MonoBehaviour
     void MovePlayer()
     {
         Vector3 movement = new Vector3();
-        movement.x = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
+        var horizontalAxis = Input.GetAxis("Horizontal");
+        movement.x = horizontalAxis * Time.deltaTime * speed;
+
+        if (horizontalAxis < 0) //Maintain current flip, if
+        {
+            transform.rotation = Quaternion.Euler(0, -180, 0);
+        }
+        else if (horizontalAxis > 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
         //movement.y = Input.GetAxis("Vertical") * Time.deltaTime * speed;
 
         body.MovePosition(transform.position + movement);
