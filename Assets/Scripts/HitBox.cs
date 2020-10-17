@@ -70,7 +70,7 @@ public class HitBox : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        Debug.LogWarning(gameObject.name + " Stay");
+        //Debug.LogWarning(gameObject.name + " Stay");
         if (gameObject.activeInHierarchy)
         {
             CheckForCollision(other);
